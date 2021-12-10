@@ -14,7 +14,8 @@ export default class StorageStack extends sst.Stack {
         interestId: sst.TableFieldType.STRING,
         presentationId: sst.TableFieldType.STRING,
       },
-      primaryIndex: "userId",
+      primaryIndex: { partitionKey: "userId" },
+
     });
   }
 }
