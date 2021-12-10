@@ -14,7 +14,7 @@ export async function main(event) {
       userId: data.userId, // The id of the author
       name: data.name, // Username
       email: data.email,
-      presented: data.presented,
+      presented: data.presented, //change this to false
     //   presentationId: uuid.v1(),
     //   interestId: uuid.v1(),
     //   interest: data.interest,
