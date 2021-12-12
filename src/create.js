@@ -1,8 +1,9 @@
+// Function to create a user
 import * as uuid from "uuid";
 import handler from "./util/handler";
 import dynamoDb from "./util/dynamodb";
 
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+//const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export const main = handler(async (event) => {
     const data = JSON.parse(event.body);

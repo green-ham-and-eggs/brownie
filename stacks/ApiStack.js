@@ -18,6 +18,7 @@ export default class ApiStack extends sst.Stack {
       },
       routes: {
         "POST   /users": "src/create.main",
+        "GET    /users/{id}": "src/getUser.main",
       },
     });
 
