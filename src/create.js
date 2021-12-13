@@ -10,6 +10,7 @@ export const main = handler(async (event) => {
     const params = {
       TableName: process.env.TABLE_NAME,
       Item: {
+      meetingId: "test",
         // The attributes of the item to be created
       userId: uuid.v1(), // The id of the author
       name: data.name, // Username

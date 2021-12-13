@@ -1,11 +1,10 @@
 import StorageStack from "./StorageStack";
-import MyStack from "./MyStack";
 import ApiStack from "./ApiStack";
 
 export default function main(app) {
-  const storageStack = new StorageStack(app, "storage");
+  const storageStack = new StorageStack(app, "storageNew");
 
-  new ApiStack(app, "api", {
+  new ApiStack(app, "apiNew", {
     table: storageStack.table,
   });
 }
