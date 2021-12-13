@@ -14,8 +14,9 @@ export const main = handler(async (event) => {
   const result = await dynamoDb.query(params);
   const allUsers = result.Items;
   const candidates = allUsers.filter(user => user.presented === false);
-
+  console.log(candidates)
   const candidate = candidates[Math.floor(Math.random()*candidates.length)];
 
+  
   return candidate;
 });
