@@ -8,7 +8,7 @@ export default class StorageStack extends sst.Stack {
     super(scope, id, props);
 
     // Create the DynamoDB table
-    this.table = new sst.Table(this, "Brownie_new", {
+    this.table = new sst.Table(this, "Brownie_new3", {
       fields: {
         meetingId: sst.TableFieldType.STRING,
         userId: sst.TableFieldType.STRING,
@@ -16,7 +16,11 @@ export default class StorageStack extends sst.Stack {
         presentationId: sst.TableFieldType.STRING,
       },
       primaryIndex: { partitionKey: "meetingId", sortKey: "userId" },
-
+      localIndexes: {
+        presentationIndex: {sortKey: "presentationId"},
+        interestIndex: { sortKey: "interestId"},
+      },
     });
+
   }
 }
