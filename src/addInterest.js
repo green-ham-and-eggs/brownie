@@ -9,16 +9,20 @@ export const main = handler(async (event) => {
     const data = JSON.parse(event.body);
     const params = {
       TableName: process.env.TABLE_NAME,
-      Item: {
+      Key: {
         // The attributes of the item to be created
+        meetingId:"test",
       userId: event.pathParameters.id, // The id of the author
-        interestId: uuid.v1(),
-      interest: data.interest,
-    
+        // interestId: uuid.v1(),
       },
+      UpdateExpression: "SET interest = :interest",
+    ExpressionAttributeValues: {
+      ":interest": data.interest || null,
+    },
+    ReturnValues: "ALL_NEW",
     };
   
-    await dynamoDb.put(params);
+    await dynamoDb.update(params);
   
-    return params.Item;
+    return { status: true };
   });
