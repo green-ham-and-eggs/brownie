@@ -7,8 +7,13 @@ export const main = handler(async (event) => {
     TableName: process.env.TABLE_NAME,
     // 'Key' defines the partition key and sort key of the item to be retrieved
     Key: {
+<<<<<<< Updated upstream
       meetingId:"test",
       userId: event.pathParameters.id, // The id of the author
+=======
+      meetingId: "test",
+        userId: event.pathParameters.id, // The id of the author
+>>>>>>> Stashed changes
         // noteId: event.pathParameters.id, // The id of the note from the path
       },
       //noteId: event.pathParameters.id, // The id of the note from the path
