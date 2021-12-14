@@ -15,7 +15,8 @@ export const main = handler(async (event) => {
       userId: uuid.v1(), // The id of the author
       name: data.name, // Username
       email: data.email,
-      presented: false, //change this to false
+      presented: false,
+      interest: [], //change this to false
     //   presentationId: uuid.v1(),
     //   interestId: uuid.v1(),
     //   interest: data.interest,
