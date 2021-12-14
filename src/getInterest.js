@@ -5,6 +5,7 @@ import dynamoDb from "./util/dynamodb";
 export const main = handler(async (event) => {
   const params = {
     TableName: process.env.TABLE_NAME,
+    IndexName: "interestIndex",
     KeyConditionExpression:  "meetingId = :meetingId",
     ExpressionAttributeValues: {
       ":meetingId": "test",
@@ -18,12 +19,8 @@ export const main = handler(async (event) => {
 
   for (let x of result.Items)
   {
-      if (x.interest)
-      {
         interest_array[i] = x.interest;
         i++;
-      }
-      
   }
 
   return interest_array;

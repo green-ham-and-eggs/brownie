@@ -15,9 +15,10 @@ export const main = handler(async (event) => {
       userId: event.pathParameters.id, // The id of the author
         // interestId: uuid.v1(),
       },
-      UpdateExpression: "SET interest = :interest",
+      UpdateExpression: "SET interest = :interest, interestId = :interestId",
     ExpressionAttributeValues: {
       ":interest": data.interest || null,
+      ":interestId":  uuid.v1(),
     },
     ReturnValues: "ALL_NEW",
     };
