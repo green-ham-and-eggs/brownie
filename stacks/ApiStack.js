@@ -25,6 +25,8 @@ export default class ApiStack extends sst.Stack {
         "GET    /history": "src/listPresentations.main",
         "PUT    /users/{id}/interest": "src/addInterest.main",
         "GET    /users/{id}/interest": "src/getInterest.main",
+        "GET    /history/{id}": "src/getPresentation.main",
+        "POST   /history/{id}": "src/sendPoints.main",
       },
     });
 
