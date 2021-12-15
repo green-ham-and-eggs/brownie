@@ -8,14 +8,36 @@ export const main = handler(async () => {
     KeyConditionExpression:  "meetingId = :meetingId",
     ExpressionAttributeValues: {
       ":meetingId": "test",
-      },
+    },
   };
 
-  // 
+  // Picking a random presenter
   const result = await dynamoDb.query(params);
   const allUsers = result.Items;
-  const candidates = allUsers.filter(user => user.presented === false);
-  console.log(candidates)
+  let candidates = allUsers.filter(user => user.presented === false);
+
+  // Resetting the candidate pool
+  if (candidates.length === 0) {
+    const ids = allUsers.map(x => x.userId);
+    for (const id of ids) {
+      let updatedUser = {
+        TableName: process.env.TABLE_NAME,
+        Key: {
+          meetingId: "test",
+          userId: id,
+        },
+        UpdateExpression: "SET presented = :pFlag",
+        ExpressionAttributeValues : {
+          ":pFlag" : false,
+        }
+      };
+
+      await dynamoDb.update(updatedUser);
+    }
+
+    candidates = allUsers;
+  }
+  
   const candidate = candidates[Math.floor(Math.random()*candidates.length)];
 
   return candidate;
