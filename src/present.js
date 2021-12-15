@@ -40,6 +40,7 @@ export const main = handler(async () => {
   
   const candidate = candidates[Math.floor(Math.random()*candidates.length)];
 
+  //TODO: pick random topic from template topics + interests
   return candidate;
 });
 
