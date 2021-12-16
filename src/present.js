@@ -40,8 +40,17 @@ export const main = handler(async () => {
   
   const candidate = candidates[Math.floor(Math.random()*candidates.length)];
 
-  //TODO: pick random topic from template topics + interests
-  return candidate;
+  // Picking interest
+  const interests = candidate.interest || [];
+  const templateInterests = [
+    "dogs",
+    "cats",
+    "fish",
+  ];
+  interests.push(...templateInterests);
+  const topic = interests[Math.floor(Math.random()*interests.length)];
+  
+  return { candidate: candidate, topic: topic };
 });
 
 export const didPresent = handler(async (event) => {
