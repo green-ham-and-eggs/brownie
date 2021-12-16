@@ -1,0 +1,22 @@
+curl -X POST \
+-H 'Content-Type: application/json' \
+-d '{"name":"test","email":"test"}' \
+https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users
+
+curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users/30f388a0-5c6d-11ec-a6e1-937b7d8598dd
+
+curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/present
+
+curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users
+
+curl -X POST \
+-H 'Content-Type: application/json' \
+-d '{"userId":"ecdfc420-5c8b-11ec-ab00-7d5496abc980","topic":"my favourite season"}' \
+https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/present
+
+curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history
+
+curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history/7a5f7670-5c6d-11ec-9421-e75254636888
+
+curl -X POST \
+https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history/7a5f7670-5c6d-11ec-9421-e75254636888
