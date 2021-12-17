@@ -3,20 +3,29 @@ import Navbar from "react-bootstrap/Navbar";
 import "./App.css";
 import Routes from "./Routes";
 import Nav from "react-bootstrap/Nav";
+import { LinkContainer } from "react-router-bootstrap";
 
 function App() {
   return (
     <div className="App container py-3">
       <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
-        <Navbar.Brand className="font-weight-bold text-muted">
-          Brownie
-        </Navbar.Brand>
+        <LinkContainer to="/">
+          <Navbar.Brand className="font-weight-bold text-muted">
+            Brownie
+          </Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Nav>
-            <Nav.Link href="/users">Team</Nav.Link>
-            <Nav.Link href="/scoreboard">ScoreBoard</Nav.Link>
-            <Nav.Link href="/history">History</Nav.Link>
+          <Nav activeKey={window.location.pathname}>
+            <LinkContainer to="/team">
+              <Nav.Link>Team</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/scoreboard">
+              <Nav.Link>ScoreBoard</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/history">
+              <Nav.Link>History</Nav.Link>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
