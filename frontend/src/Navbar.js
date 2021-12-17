@@ -14,19 +14,21 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1)
     },
     navbutton: {
-    border: 0,
-    borderRadius: 10,
-    color: 'black',
-    height: 35,
-    padding: '0 20px',
-    fontSize:15
+      border: 0,
+      borderRadius: 10,
+      color: 'black',
+      height: 35,
+      padding: '0 20px',
+      fontSize:15
     
     },
     title: {
         color: 'black',
-
-    padding: '0 20px',
-    fontSize:20
+        border: 0,
+        borderRadius: 10,
+        height: 35,
+      padding: '0 20px',
+      fontSize:20
     }
 
   }));
