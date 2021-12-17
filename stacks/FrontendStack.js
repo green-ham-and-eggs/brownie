@@ -4,7 +4,7 @@ export default class FrontendStack extends sst.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    const { api, auth, bucket } = props;
+    const { api } = props;
 
 
     // Define our React app

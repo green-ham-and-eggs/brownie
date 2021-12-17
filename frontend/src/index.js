@@ -1,14 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Amplify } from 'aws-amplify';
+import config from './config';
 import './index.css';
 import App from './App';
+import Team from './containers/Team'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
+
+// Initialize AWS Amplify
+Amplify.configure({
+  Storage: {
+    region: config.apiGateway.REGION,
+  },
+  API: {
+    endpoints: [
+      {
+        name: "brownie",
+        endpoint: config.apiGateway.URL,
+        region: config.apiGateway.REGION
+      },
+    ]
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <Team />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
