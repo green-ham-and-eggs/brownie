@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import "./App.css";
 import Routes from "./Routes";
+import Nav from "react-bootstrap/Nav";
 
 function App() {
   return (
@@ -11,6 +12,13 @@ function App() {
           Brownie
         </Navbar.Brand>
         <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Nav>
+            <Nav.Link href="/users">Team</Nav.Link>
+            <Nav.Link href="/scoreboard">ScoreBoard</Nav.Link>
+            <Nav.Link href="/history">History</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
       <Routes />
     </div>
