@@ -20,3 +20,8 @@ curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history/7a5f767
 
 curl -X POST \
 https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history/7a5f7670-5c6d-11ec-9421-e75254636888
+
+curl -X PUT \
+-H 'Content-Type: application/json' \
+-d '{"interest":"hiking"}' \
+https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users/6200d530-5eeb-11ec-a392-a78cd5776233/interest

@@ -4,7 +4,6 @@ import { Amplify } from 'aws-amplify';
 import config from './config';
 import './index.css';
 import App from './App';
-import Team from './containers/Team'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -27,7 +26,7 @@ Amplify.configure({
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Team />
+      <App />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

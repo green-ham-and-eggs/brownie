@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
+import { LinkContainer } from "react-router-bootstrap";
 import { onError } from "../lib/errorLib";
 import { API } from "aws-amplify";
+import { BsPencilSquare } from "react-icons/bs";
 
 export default function Team() {
   const [users, setUsers] = useState([]);
@@ -35,15 +37,15 @@ export default function Team() {
 
   function renderUsersList(users) {
     return (
-      <>{/*
-        <LinkContainer to="/notes/new">
+      <>
+        <LinkContainer to="/team/new">
           <ListGroup.Item action className="py-3 text-nowrap text-truncate">
             <BsPencilSquare size={17} />
-            <span className="ml-2 font-weight-bold">Create a new note</span>
+            <span className="ml-2 font-weight-bold">Add a new team member</span>
           </ListGroup.Item>
-      </LinkContainer>*/}
+        </LinkContainer>
         {users.map(user => (
-          <LinkContainer key={user.userId} to={`/users/${user.userId}`}>
+          <LinkContainer key={user.userId} to={`/team/${user.userId}`}>
             <ListGroup.Item action>
               <span className="font-weight-bold">
                 {user.name}
