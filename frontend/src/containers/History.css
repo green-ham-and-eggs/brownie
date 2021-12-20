@@ -1,0 +1,15 @@
+.align {
+    text-align: center;
+}
+
+.name {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.size {
+    font-size: large;
+    text-align: center;
+}
+
+

@@ -11,7 +11,7 @@ curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users
 
 curl -X PUT \
 -H 'Content-Type: application/json' \
--d '{"userId":"8a5f6680-5ef1-11ec-8597-f1db1b5be76c","topic":"my favourite season"}' \
+-d '{"userId":"801c8140-5eeb-11ec-a392-a78cd5776233","topic":"my favourite season"}' \
 https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/present
 
 curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history
