@@ -17,3 +17,12 @@
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
 }
+
+.celebrate {
+  text-align: center;
+}
+
+.celebrate h1 {
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+}

@@ -104,9 +104,9 @@ export default function User() {
   return (
     <div className="Users">
       {user && (
-        <span className="font-weight-bold">
+        <h3 className="pb-3 mt-4 mb-3 border-bottom">
           {user.name}
-        </span>
+        </h3>
       )}
       {interests.map((interest, index) => (
         <ListGroup.Item key={index}>

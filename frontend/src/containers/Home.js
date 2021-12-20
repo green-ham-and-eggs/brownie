@@ -3,16 +3,20 @@ import Button from "react-bootstrap/Button";
 import { onError } from "../lib/errorLib";
 import { API } from "aws-amplify";
 import "./Home.css";
+import Confetti from 'react-confetti'
 
 export default function Home() {
   const [currentPres, setCurrentPres] = useState();
   const [topic, setTopic] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [last, setLast] = useState(false);
+  const [isCelebrating, setIsCelebrating] = useState(false);
 
   useEffect(() => {
     async function onLoad() {
       try {
         const presentation = await loadPresentation();
+        lastCandidate(); // Check if the generated presenter is the last candidate
         setCurrentPres(presentation);
         setTopic(presentation.topic);
       } catch (e) {
@@ -29,6 +33,8 @@ export default function Home() {
 
   async function pickNewPresenter(){
     await API.get("brownie", "/present");
+    setIsCelebrating(false);
+    lastCandidate();
     const presentation = await loadPresentation();
 
     setCurrentPres(presentation);
@@ -36,12 +42,51 @@ export default function Home() {
   }
 
   function confirm(userAndTopic){
+    setIsCelebrating(true);
     return API.put("brownie", "/present", {
       body: userAndTopic
     });
   }
 
+  async function lastCandidate(){
+    const users = await API.get("brownie", "/users");
+    const candidates = users.filter(user => !user.presented);
+    setLast(candidates.length === 1);
+    return;
+  }
+
+  function render(){
+    return (
+      <div>
+        {isCelebrating ? celebrate() : displayCurrentPresenter()}
+      </div>
+    )
+  }
+
+  function celebrate(){
+    // TO DO: dnamically change confetti width and height to window size
+    return (
+      <div className="celebrate">
+        <Confetti
+        numberOfPieces={400}
+        gravity={0.3}
+        />
+        <h1>Thank you {currentPres.name} for presenting!&#127881;</h1>
+        <Button
+          variant="success"
+          size="lg"
+          active
+          onClick={() => pickNewPresenter()}
+        >
+          Pick a new presenter &#8594;
+        </Button>{' '}
+      </div>
+
+    )
+  }
+
   function displayCurrentPresenter(){
+    
     return (
       <div className="next-pres">
         <p className="text-muted">Next presentation:</p>
@@ -64,6 +109,9 @@ export default function Home() {
         >
           {currentPres.name} is done presenting!
         </Button>
+
+        {last ? <p>{currentPres.name} is the last team member who is yet to present!</p> : <></>}
+
       </div>
     )
   }
@@ -87,7 +135,7 @@ export default function Home() {
 
   return (
     <div className="Home">
-      {currentPres ? displayCurrentPresenter() : noCurrentPresenter()}
+      {currentPres ? render() : noCurrentPresenter()}
     </div>
   );
 }
