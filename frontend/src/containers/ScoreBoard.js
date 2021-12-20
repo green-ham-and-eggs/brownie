@@ -5,6 +5,7 @@ import { onError } from "../lib/errorLib";
 import { API } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import Badge from 'react-bootstrap/Badge'
+import "./ScoreBoard.css";
 
 export default function ScoreBoard() {
   const [users, setUsers] = useState([]);
@@ -28,7 +29,7 @@ export default function ScoreBoard() {
     return (
       <div className="users">
         <h2 className="pb-3 mt-4 mb-3 border-bottom">Your ScoreBoard</h2>
-        <ListGroup>{!isLoading && renderUsersList(users)}</ListGroup>
+        <ListGroup variant="numbered">{!isLoading && renderUsersList(users)}</ListGroup>
         
       </div>
     );
@@ -43,9 +44,10 @@ export default function ScoreBoard() {
         {(users.slice(0,1)).map(user => (
           
             <ListGroup.Item variant="warning">
-              <div>&#x1f451;</div>
-              <span className="font-weight-bold">
-                {user.name}
+              <div>&#129351;</div>
+              
+              <span className="score_name">
+                {user.name} &#x1f451;
               </span>
               
               <br />
@@ -59,12 +61,14 @@ export default function ScoreBoard() {
             </ListGroup.Item>
         ))
         }
-        {(users.slice(1,3)).map(user => (
+        {(users.slice(1,2)).map(user => (
           
           <ListGroup.Item variant="warning">
-            <span className="font-weight-bold">
+            <div>&#129352;</div>
+            <span className="score_name">
               {user.name}
             </span>
+            
             <br />
             {
             <span className="text-muted">
@@ -76,6 +80,25 @@ export default function ScoreBoard() {
           </ListGroup.Item>
       ))
       }
+      {(users.slice(2,3)).map(user => (
+          
+          <ListGroup.Item variant="warning">
+            <div>&#129353;</div>
+            <span className="score_name">
+              {user.name}
+            </span>
+            
+            <br />
+            {
+            <span className="text-muted">
+              Points:{' '} 
+            </span>}
+            <Badge variant="dark" pill>
+            {' '}{(user.score)}{' '}
+          </Badge>
+          </ListGroup.Item>
+      ))
+            }
 
       {(users.slice(-((users.length)-3)).map(user => (
           

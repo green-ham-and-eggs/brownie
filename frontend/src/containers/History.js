@@ -96,8 +96,6 @@ export default function History() {
                   </Badge> 
                   </span>
                   </div>
-
-                 
               </ListGroup.Item>
               </ListGroup>
             </ListGroup.Item>
