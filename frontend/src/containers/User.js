@@ -17,14 +17,10 @@ export default function User() {
   const [user, setUser] = useState(null);
   const [interests, setInterests] = useState([]);
   const [isAddingInterest, setIsAddingInterest] = useState(false);
-  const [newInterest, setNewInterest] = useState();
+  const [newInterest, setNewInterest] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    function loadUser() {
-      return API.get("brownie", `/users/${id}`);
-    }
-
     async function onLoad() {
       try {
         const user = await loadUser();
@@ -42,24 +38,35 @@ export default function User() {
     onLoad();
   }, [id]);
 
+  function loadUser() {
+    return API.get("brownie", `/users/${id}`);
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
   
     setIsLoading(true);
   
     try {
-      await addInterest(newInterest);
-      history(`/team/${user.userId}`);
+      await addInterest({interest: newInterest});
+      const user = await loadUser();
+     
+      setUser(user);
+      if (user.interest){
+        setInterests(user.interest);
+      }
+      setIsLoading(false);
+      setNewInterest("");
+      setIsAddingInterest(false);
     } catch (e) {
       onError(e);
       setIsLoading(false);
     }
   }
 
-  function addInterest(newInterest) {
-    const interestParam = {interest: newInterest}
+  async function addInterest(interest) {
     return API.put("brownie", `/users/${user.userId}/interest`, {
-      body: interestParam
+      body: interest
     });
   } 
 
@@ -95,7 +102,21 @@ export default function User() {
   }
 
   return (
-    <div>
+    <div className="Users">
+      {user && (
+        <span className="font-weight-bold">
+          {user.name}
+        </span>
+      )}
+      {interests.map((interest, index) => (
+        <ListGroup.Item key={index}>
+          <span className="font-weight-thin">
+            {interest}
+          </span>
+          <br />
+        </ListGroup.Item>
+      ))}
+      {isAddingInterest ? newInterestForm() : newInterestButton()}
     </div>
   );
 }
