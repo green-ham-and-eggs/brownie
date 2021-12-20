@@ -40,12 +40,14 @@ export default function ScoreBoard() {
 
     return (
       <>
-        {(users.slice(0,4)).map(user => (
+        {(users.slice(0,1)).map(user => (
           
             <ListGroup.Item variant="warning">
+              <div>&#x1f451;</div>
               <span className="font-weight-bold">
                 {user.name}
               </span>
+              
               <br />
               {
               <span className="text-muted">
@@ -57,8 +59,25 @@ export default function ScoreBoard() {
             </ListGroup.Item>
         ))
         }
+        {(users.slice(1,3)).map(user => (
+          
+          <ListGroup.Item variant="warning">
+            <span className="font-weight-bold">
+              {user.name}
+            </span>
+            <br />
+            {
+            <span className="text-muted">
+              Points:{' '} 
+            </span>}
+            <Badge variant="dark" pill>
+            {' '}{(user.score)}{' '}
+          </Badge>
+          </ListGroup.Item>
+      ))
+      }
 
-      {(users.slice(-((users.length)-4)).map(user => (
+      {(users.slice(-((users.length)-3)).map(user => (
           
           <ListGroup.Item>
             <span className="font-weight-bold">
