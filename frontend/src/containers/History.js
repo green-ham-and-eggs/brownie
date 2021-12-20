@@ -64,8 +64,8 @@ export default function History() {
       <>
         {(users.slice(0,3)).map(user=> (
           
-            <ListGroup.Item variant="secondary">
-                <ListGroup horizontal>
+            <ListGroup.Item>
+                <ListGroup horizontal >
                 <ListGroup.Item variant="none">
                     <div class="name">
               <span className="font-weight-bold" >
@@ -75,7 +75,7 @@ export default function History() {
                 {(new Date(user.presentationDate)).toLocaleString()}
               </span>
               <br />
-              <div class="align">
+              <div class="size">
               <span>
               
               <LoaderButton isLoading={isLoading} variant="warning" onClick={() => onChange(user.presentationId)}>
@@ -84,15 +84,16 @@ export default function History() {
             </LoaderButton>
               </span></div>
               </ListGroup.Item>
-              <ListGroup.Item variant="none">
+              <ListGroup.Item variant="secondary">
+              <div class="name">
                   <span className="font-weight-bold">
                   Points
-                  </span>
-                  <br />
+                  </span> </div>
                   <br />
                   <div class="align">
-                  <span>
-                  {user.score}  
+                  <span><Badge variant="none" style={{fontSize: 18}}>
+                  {user.score} 
+                  </Badge> 
                   </span>
                   </div>
 
