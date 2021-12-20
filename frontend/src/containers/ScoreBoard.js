@@ -6,7 +6,7 @@ import { API } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import Badge from 'react-bootstrap/Badge'
 
-export default function Team() {
+export default function ScoreBoard() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -78,32 +78,6 @@ export default function Team() {
     );
   }
 
-  function renderUsersBottom(users) {
-    users.sort((a,b) => {
-      return b.score - a.score;
-    });
-    const user_array = [];
-    user_array = users;
-
-    return (
-      <>
-        {(users.slice(5,1)).map(user => (
-          
-            <ListGroup.Item variant="success">
-              <span className="font-weight-bold">
-                {user.name}
-              </span>
-              <br />
-              {
-              <span className="text-muted">
-                Points: {(user.score).toLocaleString()}
-              </span>}
-            </ListGroup.Item>
-        ))
-        }
-      </>
-    );
-  }
   return (
     <div>
       {renderUsers()}
