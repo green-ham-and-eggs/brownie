@@ -37,12 +37,50 @@ export const main = handler(async () => {
 
     candidates = allUsers;
   }
+  console.log(candidates);
+  console.log(Math.floor(Math.random()*candidates.length))
   
   const candidate = candidates[Math.floor(Math.random()*candidates.length)];
 
+  // Resetting the previous presenting flag
+  const previousPresenters = allUsers.filter(user => user.presenting === true);
+  if (previousPresenters.length === 1) {
+    const setNotPresenting = {
+      TableName: process.env.TABLE_NAME,
+      Key: {
+        meetingId: "test",
+        userId: previousPresenters[0].userId,
+      },
+      UpdateExpression: "SET presenting = :flag",
+      ExpressionAttributeValues : {
+        ":flag" : false,
+      }
+    }
+  
+    await dynamoDb.update(setNotPresenting);
+  } else if (previousPresenters.length > 1){
+    console.log("something is wrongggg");
+    return;
+  }
+
+  // Setting presenting flag
+  const setPresenting = {
+    TableName: process.env.TABLE_NAME,
+    Key: {
+      meetingId: "test",
+      userId: candidate.userId,
+    },
+    UpdateExpression: "SET presenting = :flag",
+    ExpressionAttributeValues : {
+      ":flag" : true,
+    }
+  }
+
+  await dynamoDb.update(setPresenting);
+
   // Picking interest
   const interests = candidate.interest || [];
-  const templateInterests = [
+  const templateInterests = [ //TO DO: fill in with actual interests
     "dogs",
     "cats",
     "fish",

@@ -20,7 +20,7 @@ export default class ApiStack extends sst.Stack {
         "POST   /users": "src/create.main",
         "GET    /users/{id}": "src/getUser.main",
         "GET    /present": "src/present.main",
-        "POST   /present": "src/present.didPresent",
+        "PUT    /present": "src/present.didPresent",
         "GET    /users": "src/list.main",
         "GET    /history": "src/listPresentations.main",
         "PUT    /users/{id}/interest": "src/addInterest.main",
@@ -28,6 +28,7 @@ export default class ApiStack extends sst.Stack {
         "GET    /interest": "src/getInterest.main",
         "GET    /history/{id}": "src/getPresentation.main",
         "POST   /history/{id}": "src/sendPoints.main",
+        "GET    /currentPres" : "src/getCurrentPresentation.main",
       },
     });
 

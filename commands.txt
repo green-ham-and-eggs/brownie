@@ -9,9 +9,9 @@ curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/present
 
 curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users
 
-curl -X POST \
+curl -X PUT \
 -H 'Content-Type: application/json' \
--d '{"userId":"ecdfc420-5c8b-11ec-ab00-7d5496abc980","topic":"my favourite season"}' \
+-d '{"userId":"8a5f6680-5ef1-11ec-8597-f1db1b5be76c","topic":"my favourite season"}' \
 https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/present
 
 curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history
@@ -19,9 +19,11 @@ curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history
 curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history/7a5f7670-5c6d-11ec-9421-e75254636888
 
 curl -X POST \
-https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history/7a5f7670-5c6d-11ec-9421-e75254636888
+https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/history/c85b2ff0-612b-11ec-bec4-7dde6a62f646
 
 curl -X PUT \
 -H 'Content-Type: application/json' \
 -d '{"interest":"hiking"}' \
-https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users/6200d530-5eeb-11ec-a392-a78cd5776233/interest
+https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users/8a5f6680-5ef1-11ec-8597-f1db1b5be76c/interest
+
+curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/currentPres
