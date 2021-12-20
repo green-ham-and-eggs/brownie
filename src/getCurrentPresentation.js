@@ -16,7 +16,7 @@ export const main = handler(async (event) => {
   if (currentPresenters.length === 1) {
     return currentPresenters[0];
   } else if (currentPresenters.length === 0) {
-    return [];
+    return false;
   }
   throw new Error("You have more than one presenters");
 });

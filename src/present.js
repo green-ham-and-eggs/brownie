@@ -88,6 +88,21 @@ export const main = handler(async () => {
   interests.push(...templateInterests);
   const topic = interests[Math.floor(Math.random()*interests.length)];
   
+  // Update interest in db
+  const newTopic = {
+    TableName: process.env.TABLE_NAME,
+    Key: {
+      meetingId: "test",
+      userId: candidate.userId,
+    },
+    UpdateExpression: "SET topic = :t",
+    ExpressionAttributeValues : {
+      ":t" : topic,
+    }
+  }
+
+  await dynamoDb.update(newTopic);
+
   return { candidate: candidate, topic: topic };
 });
 
@@ -100,12 +115,13 @@ export const didPresent = handler(async (event) => {
       meetingId: "test",
       userId: data.userId, // TO DO: change to getting from path
     },
-    UpdateExpression: "SET presented = :pFlag, presentationId = :pId, presentationDate = :pDate, topic = :pTopic",
+    UpdateExpression: "SET presented = :pFlag, presentationId = :pId, presentationDate = :pDate, topic = :pTopic, presenting = :p",
     ExpressionAttributeValues : {
       ":pId": uuid.v1(),
       ":pFlag" : true,
       ":pDate": Date.now(),
-      ":pTopic": data.topic
+      ":pTopic": data.topic,
+      ":p": false,
     }
   };
 
