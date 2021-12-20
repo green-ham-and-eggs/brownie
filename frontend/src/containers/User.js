@@ -95,25 +95,7 @@ export default function User() {
   }
 
   return (
-    <div className="Users">
-      {user && (
-        <span className="font-weight-bold">
-          {user.name}
-        </span>
-      )}
-      {interests.map((interest, index) => (
-          <ListGroup.Item key={index}>
-            <span className="font-weight-thin">
-              {interest}
-            </span>
-            <br />
-            {/*
-            <span className="text-muted">
-              Created: {new Date(createdAt).toLocaleString()}
-            </span>*/}
-          </ListGroup.Item>
-      ))}
-      {isAddingInterest ? newInterestForm() : newInterestButton()}
+    <div>
     </div>
   );
 }

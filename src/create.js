@@ -17,6 +17,7 @@ export const main = handler(async (event) => {
       email: data.email,
       presented: false,
       interest: [], //change this to false
+      score: 0,
     //   presentationId: uuid.v1(),
     //   interestId: uuid.v1(),
     //   interest: data.interest,
