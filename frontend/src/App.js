@@ -4,6 +4,7 @@ import "./App.css";
 import Routes from "./Routes";
 import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
+import logo from './favicon-32x32.png';
 
 function App() {
   return (
@@ -11,6 +12,11 @@ function App() {
       <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
         <LinkContainer to="/">
           <Navbar.Brand className="font-weight-bold text-muted">
+          <img
+      src={logo}
+      width="30"
+      height="30"
+    />
             Brownie
           </Navbar.Brand>
         </LinkContainer>
