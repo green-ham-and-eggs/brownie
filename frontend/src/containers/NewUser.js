@@ -29,6 +29,7 @@ export default function NewUser() {
   }
   
   function createUser(user) {
+    console.log(user)
     return API.post("brownie", "/users", {
       body: user
     });
@@ -61,6 +62,7 @@ export default function NewUser() {
           block
           isLoading={isLoading}
           disabled={false}
+          type="submit"
         >
           Save
         </LoaderButton>
