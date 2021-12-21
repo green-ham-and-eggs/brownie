@@ -3,7 +3,8 @@ import Button from "react-bootstrap/Button";
 import { onError } from "../lib/errorLib";
 import { API } from "aws-amplify";
 import "./Home.css";
-import Confetti from 'react-confetti'
+import Confetti from 'react-confetti';
+import ListGroup from "react-bootstrap/ListGroup";
 
 export default function Home() {
   const [currentPres, setCurrentPres] = useState();
@@ -55,6 +56,26 @@ export default function Home() {
     return;
   }
 
+  function displayInterests() {
+    const filteredInterests = currentPres.interest.filter(i => i !== topic);
+    console.log(filteredInterests)
+    if (filteredInterests.length > 0) {
+      return (
+        <div>
+          <p>{currentPres.name} is also interested in:</p>
+          {filteredInterests.map((fi, index) => (
+            <ListGroup.Item key={index}>
+            <span>
+              {fi}
+            </span>
+            <br />
+          </ListGroup.Item>
+          ))}
+        </div>
+      )
+    }
+  }
+
   function render(){
     return (
       <div>
@@ -71,7 +92,7 @@ export default function Home() {
         numberOfPieces={400}
         gravity={0.3}
         />
-        <h1>Thank you {currentPres.name} for presenting!&#127881;</h1>
+        <h1>Thanks for presenting, {currentPres.name}!&#127881;</h1>
         <Button
           variant="success"
           size="lg"
@@ -93,13 +114,14 @@ export default function Home() {
         <h1>{currentPres.name}</h1>
         <p className="text-muted">Topic:</p>
         <h3>{topic}</h3>
+        {displayInterests()}
         <Button
           variant="primary"
           size="lg"
           active
           onClick={() => pickNewPresenter()}
         >
-          Pick a new presenter
+          Pick a new {last ? 'topic' : 'presenter'}
         </Button>{' '}
         <Button
           variant="success"
