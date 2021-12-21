@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { LinkContainer } from "react-router-bootstrap";
 import { onError } from "../lib/errorLib";
 import { API } from "aws-amplify";
-import { BsPencilSquare } from "react-icons/bs";
 import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
 import "./History.css";
 import logo from './favicon-32x32.png';
 
@@ -30,7 +27,7 @@ export default function History() {
 
   async function onChange(id) {
     try {
-    let points = await sendPoint(id);
+    await sendPoint(id);
     const datas = await loadUsers();
         setUsers([...datas]);
     } catch (e) {
@@ -86,6 +83,7 @@ export default function History() {
                           src={logo}
                           width="20"
                           height="20"
+                          alt=""
                         />
                     
                         </button>

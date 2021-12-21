@@ -1,19 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useParams, useNavigate as useHistory } from "react-router-dom";
-import { API, Storage } from "aws-amplify";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { API } from "aws-amplify";
 import { onError } from "../lib/errorLib";
 
 import ListGroup from "react-bootstrap/ListGroup";
 import { BsPencilSquare } from "react-icons/bs";
 import LoaderButton from "../components/LoaderButton";
-import { LinkContainer } from "react-router-bootstrap";
 import Form from "react-bootstrap/Form";
-import config from "../config";
 
 export default function User() {
-  const file = useRef(null);
   const { id } = useParams();
-  const history = useHistory();
   const [user, setUser] = useState(null);
   const [interests, setInterests] = useState([]);
   const [isAddingInterest, setIsAddingInterest] = useState(false);
@@ -23,7 +19,7 @@ export default function User() {
   useEffect(() => {
     async function onLoad() {
       try {
-        const user = await loadUser();
+        const user = await API.get("brownie", `/users/${id}`);
 
         setUser(user);
         if (user.interest){

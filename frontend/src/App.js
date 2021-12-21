@@ -16,6 +16,7 @@ function App() {
       src={logo}
       width="30"
       height="30"
+      alt="brownie logo"
     />
             Brownie
           </Navbar.Brand>

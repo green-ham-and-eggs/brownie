@@ -9,7 +9,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 export default function Home() {
   const [currentPres, setCurrentPres] = useState();
   const [topic, setTopic] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  //const [isLoading, setIsLoading] = useState(true);
   const [last, setLast] = useState(false);
   const [isCelebrating, setIsCelebrating] = useState(false);
 
@@ -23,7 +23,7 @@ export default function Home() {
       } catch (e) {
         onError(e);
       }
-      setIsLoading(false);
+      //setIsLoading(false);
     }
     onLoad();
   }, []);
