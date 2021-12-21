@@ -12,4 +12,19 @@
     text-align: center;
 }
 
+.buttonW {
+    background-color: #77d160;
+    color: #000000;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+}
+
+.buttonW:hover {
+    outline: none;
+    color: ghostwhite;
+    background: rgb(94, 148, 33);
+}
+
 

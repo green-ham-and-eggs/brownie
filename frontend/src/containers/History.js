@@ -5,8 +5,9 @@ import { onError } from "../lib/errorLib";
 import { API } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import Badge from 'react-bootstrap/Badge';
-import LoaderButton from "../components/LoaderButton";
+import Button from 'react-bootstrap/Button';
 import "./History.css";
+import logo from './favicon-32x32.png';
 
 export default function History() {
   const [users, setUsers] = useState([]);
@@ -67,23 +68,41 @@ export default function History() {
             <ListGroup.Item>
                 <ListGroup horizontal >
                 <ListGroup.Item variant="none">
-                    <div class="name">
-              <span className="font-weight-bold" >
-                {user.name}
-              </span> </div>
-              <span className="text-muted">
-                {(new Date(user.presentationDate)).toLocaleString()}
-              </span>
-              <br />
-              <div class="size">
-              <span>
-              
-              <LoaderButton isLoading={isLoading} variant="warning" onClick={() => onChange(user.presentationId)}>
-                Points <Badge>+1</Badge>
-                
-            </LoaderButton>
-              </span></div>
+                  <div class="name">
+                    <span className="font-weight-bold" >
+                      {user.name}
+                    </span> </div>
+                 
+                    <span className="text-muted">
+                      {(new Date(user.presentationDate)).toLocaleString()}
+                    </span>
+                    
+                    <br />
+                    <div class="size">
+                      <span>
+                    
+                        <button className="buttonW" onClick={() => onChange(user.presentationId)}>
+                          +{' '}<img
+                          src={logo}
+                          width="20"
+                          height="20"
+                        />
+                    
+                        </button>
+                     </span>
+                    </div>
               </ListGroup.Item>
+
+              <ListGroup.Item variant="none">
+              <div class="align">
+            
+                  <br />
+                  <div>Topic: <span className="font-weight-bold">
+                  {user.topic} 
+                  </span> </div>
+                   </div>
+              </ListGroup.Item>
+
               <ListGroup.Item variant="secondary">
               <div class="name">
                   <span className="font-weight-bold">
