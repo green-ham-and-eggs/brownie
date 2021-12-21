@@ -10,6 +10,7 @@ import "./ScoreBoard.css";
 export default function ScoreBoard() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
   useEffect(() => {
     async function onLoad() {
       try {
@@ -34,11 +35,11 @@ export default function ScoreBoard() {
       </div>
     );
   }
+
   function renderUsersList(users) {
     users.sort((a,b) => {
       return b.score - a.score;
     });
-
     return (
       <>
         {(users.slice(0,1)).map(user => (
@@ -61,7 +62,8 @@ export default function ScoreBoard() {
             </ListGroup.Item>
         ))
         }
-        {(users.slice(1,2)).map(user => (
+        {
+          (users.slice(1,2)).map(user => (
           
           <ListGroup.Item variant="warning">
             <div>&#129352;</div>
@@ -100,7 +102,7 @@ export default function ScoreBoard() {
       ))
             }
 
-      {(users.slice(-((users.length)-3)).map(user => (
+      {(users.slice(3,users.length).map(user => (
           
           <ListGroup.Item>
             <span className="font-weight-bold">
