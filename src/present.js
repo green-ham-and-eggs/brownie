@@ -81,9 +81,9 @@ export const main = handler(async () => {
   // Picking interest
   const interests = candidate.interest || [];
   const templateInterests = [ //TO DO: fill in with actual interests
-    "dogs",
-    "cats",
-    "fish",
+    "Favourite TV show",
+    "Favourite holiday destinations",
+    "A new hobby",
   ];
   interests.push(...templateInterests);
   const topic = interests[Math.floor(Math.random()*interests.length)];

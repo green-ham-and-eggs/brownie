@@ -63,14 +63,16 @@ export default function Home() {
       return (
         <div>
           <p>{currentPres.name} is also interested in:</p>
-          {filteredInterests.map((fi, index) => (
-            <ListGroup.Item key={index}>
-            <span>
-              {fi}
-            </span>
-            <br />
-          </ListGroup.Item>
-          ))}
+          <ListGroup variant="flush">
+            {filteredInterests.map((fi, index) => (
+              <ListGroup.Item key={index}>
+              <span>
+                {fi}
+              </span>
+              <br />
+            </ListGroup.Item>
+            ))}
+          </ListGroup>
         </div>
       )
     }
