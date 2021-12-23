@@ -81,6 +81,7 @@ export default function User() {
           block
           isLoading={isLoading}
           disabled={false}
+          type="submit"
         >
           Save
         </LoaderButton>
