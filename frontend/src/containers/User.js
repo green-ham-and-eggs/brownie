@@ -15,6 +15,7 @@ export default function User() {
   const [isAddingInterest, setIsAddingInterest] = useState(false);
   const [newInterest, setNewInterest] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     async function onLoad() {
@@ -66,6 +67,31 @@ export default function User() {
     });
   } 
 
+  function deleteNote() {
+    return API.del("brownie", `/users/${user.userId}`);
+  }
+  
+  async function handleDelete(event) {
+    event.preventDefault();
+  
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+  
+    if (!confirmed) {
+      return;
+    }
+  
+    setIsDeleting(true);
+  
+    try {
+      await deleteNote();
+    } catch (e) {
+      onError(e);
+      setIsDeleting(false);
+    }
+  }
+
   function newInterestForm(){
     return (
       <Form onSubmit={handleSubmit}>
@@ -114,6 +140,18 @@ export default function User() {
         </ListGroup.Item>
       ))}
       {isAddingInterest ? newInterestForm() : newInterestButton()}
+      {<br />}
+      {
+        <LoaderButton
+        block
+        size="lg"
+        variant="danger"
+        onClick={handleDelete}
+        isLoading={isDeleting}
+      >
+        Delete User
+      </LoaderButton>
+      }
     </div>
   );
 }
