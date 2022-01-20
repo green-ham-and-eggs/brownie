@@ -27,3 +27,6 @@ curl -X PUT \
 https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users/8a5f6680-5ef1-11ec-8597-f1db1b5be76c/interest
 
 curl https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/currentPres
+
+curl -X DELETE \
+https://axx0f8y0le.execute-api.ap-southeast-2.amazonaws.com/users/1b3c5d70-621c-11ec-8ae4-5b6f80b68069/interest

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { API } from "aws-amplify";
 import { onError } from "../lib/errorLib";
 
-import ListGroup from "react-bootstrap/ListGroup";
+import { Button, ListGroup } from "react-bootstrap";
 import { BsPencilSquare } from "react-icons/bs";
 import LoaderButton from "../components/LoaderButton";
 import Form from "react-bootstrap/Form";
@@ -67,8 +67,12 @@ export default function User() {
     });
   } 
 
-  function deleteNote() {
+  function deleteUser() {
     return API.del("brownie", `/users/${user.userId}`);
+  }
+
+  function deleteInterest(interestId) {
+    return API.del("brownie", `/users/${user.userId}/interest/${interestId}`);
   }
   
   async function handleDelete(event) {
@@ -85,10 +89,26 @@ export default function User() {
     setIsDeleting(true);
   
     try {
-      await deleteNote();
+      await deleteUser();
     } catch (e) {
       onError(e);
       setIsDeleting(false);
+    }
+  }
+
+  async function handleDeleteInterest(interestId) {
+    //event.preventDefault();
+  
+    try {
+      await deleteInterest(interestId);
+      // Re-render interests
+      const user = await API.get("brownie", `/users/${id}`);
+      setUser(user);
+      if (user.interest){
+        setInterests(user.interest);
+      }
+    } catch (e) {
+      onError(e);
     }
   }
 
@@ -132,10 +152,13 @@ export default function User() {
         </h3>
       )}
       {interests.map((interest, index) => (
-        <ListGroup.Item key={index}>
+        <ListGroup.Item key={index.toString()}>
           <span className="font-weight-thin">
             {interest}
           </span>
+          <Button id={index.toString()} onClick={(e) => handleDeleteInterest(e.target.id)}>
+            Delete
+          </Button>
           <br />
         </ListGroup.Item>
       ))}
