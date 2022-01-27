@@ -7,6 +7,7 @@ import { Button, ListGroup } from "react-bootstrap";
 import { BsPencilSquare, BsTrash } from "react-icons/bs";
 import LoaderButton from "../components/LoaderButton";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 export default function User() {
   const { id } = useParams();
@@ -16,6 +17,7 @@ export default function User() {
   const [newInterest, setNewInterest] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function onLoad() {
@@ -90,6 +92,7 @@ export default function User() {
   
     try {
       await deleteUser();
+      navigate('/team');
     } catch (e) {
       onError(e);
       setIsDeleting(false);
