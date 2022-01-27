@@ -4,7 +4,7 @@ import { API } from "aws-amplify";
 import { onError } from "../lib/errorLib";
 
 import { Button, ListGroup } from "react-bootstrap";
-import { BsPencilSquare } from "react-icons/bs";
+import { BsPencilSquare, BsTrash } from "react-icons/bs";
 import LoaderButton from "../components/LoaderButton";
 import Form from "react-bootstrap/Form";
 
@@ -156,10 +156,11 @@ export default function User() {
           <span className="font-weight-thin">
             {interest}
           </span>
-          <Button id={index.toString()} onClick={(e) => handleDeleteInterest(e.target.id)}>
-            Delete
-          </Button>
-          <br />
+          <div class="delete-button">
+            <Button variant="danger">
+              <BsTrash size={15} id={index.toString()} onClick={(e) => handleDeleteInterest(e.target.id)}/>
+            </Button>
+          </div>
         </ListGroup.Item>
       ))}
       {isAddingInterest ? newInterestForm() : newInterestButton()}
